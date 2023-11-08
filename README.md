@@ -1,1 +1,1 @@
-shell
+simple_shell script project
