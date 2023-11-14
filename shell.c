@@ -17,7 +17,7 @@ int main(void)
 	char *buffer = NULL;
 	size_t size = 0;
 	char *token, *path;
-	char *delim = "\n ";
+	char *delim = " \n";
 	ssize_t num;
 	int i;
 	char *argv[50];
@@ -28,15 +28,20 @@ int main(void)
 		num = getline(&buffer, &size, stdin);
 		if (num == -1)
 		{
-				printf("\n\n\n[Disconnected....]\n");
+				printf("\n\n\n[Disconnected...]\n");
 				free(buffer);
 				exit(EXIT_FAILURE);
+		}
+		if (strspn(buffer, " \t\n"))
+		{
+			continue;
 		}
 		token = strtok(buffer, delim);
 		i = 0;
 		while (token != NULL && i < 50)
 		{
-			argv[i] = token;
+			argv[i] = malloc(sizeof(char *) * (strlen(token) + 1));
+			strcpy(argv[i], token);
 			i++;
 			token = strtok(NULL, delim);
 		}
@@ -44,15 +49,15 @@ int main(void)
 		path = get_path(argv[0]);
 		if (i > 0 && strcmp(argv[0], "exit") == 0)
 		{
-			_printf("\n\n\n[Disconnected....]\n");
+			_printf("\n\n\n[Disconnected...]\n");
 			free(buffer);
 			exit(EXIT_SUCCESS);
 		}
 		if (path != NULL)
 			exec(path,argv);
-		else 
+		else if (access(argv[0], X_ok) == 0)
 		{
-			perror("Error");
+			exec(path,argv);
 		}
 	}
 	free(buffer);
