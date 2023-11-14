@@ -5,5 +5,5 @@
  */
 void _printf(const char *mess)
 {
-        write(1, mess, strlen(mess));
+	write(1, mess, strlen(mess));
 }
