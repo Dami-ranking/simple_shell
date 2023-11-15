@@ -9,7 +9,7 @@
 #include<sys/wait.h>
 #include <sys/types.h>
 
-
+void _printf(const char *mess);
 int exec(char *path, char *argv[]);
 char *get_path(char *arg);
 char *loca(char *path, char *arg);

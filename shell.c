@@ -28,7 +28,7 @@ int main(void)
 		num = getline(&buffer, &size, stdin);
 		if (num == -1)
 		{
-				printf("\n\n\n[Disconnected...]\n");
+				printf("\n\n\n[Disconnected....]\n");
 				free(buffer);
 				exit(EXIT_FAILURE);
 		}
@@ -49,15 +49,15 @@ int main(void)
 		path = get_path(argv[0]);
 		if (i > 0 && strcmp(argv[0], "exit") == 0)
 		{
-			_printf("\n\n\n[Disconnected...]\n");
+			_printf("\n\n\n[Disconnected....]\n");
 			free(buffer);
 			exit(EXIT_SUCCESS);
 		}
 		if (path != NULL)
-			exec(path,argv);
-		else if (access(argv[0], X_ok) == 0)
+			exec(path, argv);
+		else if (access(argv[0], X_OK) == 0)
 		{
-			exec(path,argv);
+			exec(path, argv);
 		}
 	}
 	free(buffer);
