@@ -1,7 +1,7 @@
 #include"main.h"
 /**
  * exit_comd - Execute a command using fork and execve.
- * @ergv: An array of string
+ * @argv: An array of string
  */
 void exit_comd(char **argv)
 {
